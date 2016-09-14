@@ -127,7 +127,8 @@ module.exports = function(app) {
     app.post('/post', checkLogin);
     app.post('/post', function(req, res) {
         var currentUser = req.session.user,
-            post = new Post(currentUser.name, req.body.title, req.body.post);
+            tags = [req.body.tag1, req.body.tag2, req.body.tag3],
+            post = new Post(currentUser.name, req.body.title, tags, req.body.post);
         post.save(function(err) {
             if (err) {
                 req.flash('error', err);
@@ -174,6 +175,60 @@ module.exports = function(app) {
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
+        });
+    });
+    app.get('/tags', function(req, res) {
+        Post.getTags(function(err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('tags', {
+                title: '标签',
+                posts: posts,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+    app.get('/tags/:tag', function(req, res) {
+        Post.getTag(req.params.tag, function(err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('tag', {
+                title: 'TAG:' + req.params.tag,
+                posts: posts,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
+    app.get('/search', function(req, res) {
+        Post.search(req.query.keyword, function(err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('search', {
+                title: "SEARCH:" + req.query.keyword,
+                posts: posts,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+    app.get('/links', function(req, res) {
+        res.render('links', {
+            title: '友情链接',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
         });
     });
     app.get('/u/:name', function(req, res) {
@@ -281,6 +336,10 @@ module.exports = function(app) {
             req.flash('success', '删除成功!');
             res.redirect('/');
         });
+    });
+
+    app.use(function(req, res) {
+        res.render("404");
     });
 
     function checkLogin(req, res, next) {
