@@ -338,6 +338,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/autoaddupdate', function(req,res) {
+        res.render('autoaddupdate', {
+            version: '9.12',
+            updateversion: '1.0'
+        });
+    })
+
+    app.get('/autoadd/down', function(req, res) {
+        res.download('./public/files/autoadd_9_12.zip', 'autoadd.zip');
+    })
+
     app.use(function(req, res) {
         res.render("404");
     });

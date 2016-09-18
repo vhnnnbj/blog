@@ -7,7 +7,7 @@
 6 silly lifecycle blog@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle blog@0.0.0~start: blog@0.0.0
 8 verbose lifecycle blog@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle blog@0.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/csf/Desktop/git/blog/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+9 verbose lifecycle blog@0.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/csf/Desktop/git/blog/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 10 verbose lifecycle blog@0.0.0~start: CWD: /home/csf/Desktop/git/blog
 11 silly lifecycle blog@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle blog@0.0.0~start: Returned: code: 1  signal: null
