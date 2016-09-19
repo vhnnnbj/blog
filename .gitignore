@@ -2,4 +2,6 @@ node_modules/
 node_modules
 blogdb
 blogdb/
+public/files/
+public/files
 
