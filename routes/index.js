@@ -340,17 +340,20 @@ module.exports = function(app) {
 
     app.get('/autoaddupdate', function(req, res) {
         res.render('autoaddupdate', {
-            version: '1.0',
-            updateversion: '1.0'
+            version: '1.1',
+            updateversion: '1.1'
         });
-    })
+    });
 
     app.get('/autoadd/down', function(req, res) {
-        res.download('./public/files/autoadd_v1.0.zip', 'autoadd.zip');
-    })
+        res.download('./public/files/autoadd_v1.1.zip', 'autoadd.zip');
+    });
     app.get('/autoadd/updatedown', function(req, res) {
-        res.download('./public/files/addUpdate_v1.0.zip', 'addUpdate.zip');
-    })
+        res.download('./public/files/addUpdate_v1.1', 'addUpdate.exe');
+    });
+    app.get('/autoadd/tooldown', function(req, res) {
+        res.download('./public/files/Ionic.Zip.dll', 'Ionic.Zip.dll');
+    });
 
     app.use(function(req, res) {
         res.render("404");
